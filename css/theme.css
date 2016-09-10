@@ -18,3 +18,9 @@ h1{
   text-align:center;
   width:100%;
 }
+
+.site{
+  width:70%;
+  margin:auto;
+  font-family:'Open Sans', sans-seif;
+}
