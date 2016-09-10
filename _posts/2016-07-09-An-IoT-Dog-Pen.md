@@ -15,7 +15,7 @@ Before I can make the pen smart, I have to make a pen. Minion's a small dog so t
 
 I cleared out a 8' x 3' space in the weed ridden graden in my backyard. I created a 3-sided frame out of 2x4 with the thought that the 4th side would be the house. I then wrapped chicken wire around the 3 sides and stapeled it to the 2x4s. I dug a little trench for the bottom 2x4s and covered them up so it would be harder for minion to dig under the pen if he tried.
 
-<img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/mom_with_root.jpg'/>
-<img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_step4.jpg'/>
+<img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/mom_with_root_.jpg'/>
+<img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_step4_.jpg'/>
 
 
