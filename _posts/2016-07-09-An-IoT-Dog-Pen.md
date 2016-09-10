@@ -18,7 +18,7 @@ I cleared out a 8' x 3' space in the weed ridden graden in my backyard. I create
 <img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/mom_with_root_.jpg'/>
 <img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_step4_.jpg'/>
 
-Next I made the door of the pen. The idea was to have it fit where the screen ussually fits so the window could still close when it rains, snows, etc. Or we could also close it if we didn't want minion outside for whatever reason.
+Next I made the door of the pen. The idea was to have it fit where the screen ussually fits so the window could still close when it rains, snows, etc. Or we could also close it if we didn't want minion outside for whatever reason. I also made a small ramp so minion can climb up and down from the window. The ramp also doubles as a tiny dog house so minion can have some shade on hot days.
 
 <div>
   <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_jigsaw.mp4" type="video/mp4"/></video>
@@ -30,4 +30,31 @@ Next I made the door of the pen. The idea was to have it fit where the screen us
   </video>
 </div>
 
-a 5th update
+## Cameras
+
+Next I mounted some web cameras to the pen. There was a couple problems I had to solve at this point. At first I tried a $7 dollar-store webcam but the quality was so bad that in the sunlight the screen went completely white. So instead I mounted the $7 dollar camera under the ramp in the shade and found an old point-and-shoot camera for a view of the whole pen. 
+
+The second problem was that the point-and-shoot camera ran on batteries and I didn't want to have to change the batteries every time they ran out. I solved this by wiring up a 3V DC power supply to the battery terminals and running the wires through the window to an outlet in my the basement.
+
+The third problem was that whenever the camera screen went to sleep, the feed would go black. Because my camera didn't have an option to turn off the sleep, this was a significant problem. I ended up having to install a hack fireware version to the SD card of the camera and have it autoboot into the custom firmware. The firmware I used is called [CHDK](http://chdk.wikia.com/wiki/CHDK) (Cannon Hack Development Kit). This custom fireware did have an option to turn off the screen sleep which fixed the feed going black problem.
+
+<div>
+  <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_camera.mp4" type="video/mp4"/></video>
+</div>
+
+So, next I wanted to setup a web page to stream the camera feeds live. I found that the HTML spec is still pretty new on livestreaming and all the different browsers have way different protocals making it fairly difficult to implement. Of course I could use Flash but I'd rather avoid using a non-standard web technology. I found a solution with [jsmpeg](https://github.com/phoboslab/jsmpeg) which is a really cool mpeg stream decoder in JavaScript. The process flow was as follows:
+
+  1. Create a mpeg stream with something like [ffmpeg](https://ffmpeg.org/) using webcam input and outputing an http stream. The following command worked for me on windows. Make sure your frame rate matches the frame rate of the device you're using, this was an issue for me that I had to figure out.
+  
+    `ffmpeg -s 320x240 -r 30 -f dshow -rtbufsize 500000k -i video="Dazzle DVC100 Video" -f mpeg1video -b 400k -r 30 http://127.0.0.1:8082/password123/320/240`
+
+  2. Create a mpeg websocket stream from the http stream. The jsmpeg repsitory convientantly includes a stream server that does just this for you.
+  3. Recieve the mpeg websocket stream on the browser and use [jsmpeg](https://github.com/phoboslab/jsmpeg) to decode it onto a canvas.
+  
+## Water Bowl
+
+I also added the ability to fill minion's water bowl by holding a button on the pen's webpage. I used a Chinese knockoff Ardunio that I got for $10 at a local electronics shop. Since my web server was written in node.js I used the (johnny five)[http://johnny-five.io/] javascript robotics library. It's a really cool library that lets you talk to Ardunios from node.js. You have to make sure you load Firmata onto the board first, which is a protocal for communicating with microcontrollers over USB, which you can find in the examples in the Ardunio IDE as "StandardFirmata". I hooked up the Ardunio to a 3V relay that controlled power to a 12V bildge pump. The bildge pump was put in a bucket of water and I connected a hose from the pump to a custom built water trough that I put in minion's pen.
+
+<div>
+  <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_waterbowl.mp4" type="video/mp4"/></video>
+</div>
