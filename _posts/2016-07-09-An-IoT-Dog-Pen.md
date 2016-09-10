@@ -29,12 +29,3 @@ Next I made the door of the pen. The idea was to have it fit where the screen us
   <source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_final_product.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-
-
-
-
-
-
-
-
-
