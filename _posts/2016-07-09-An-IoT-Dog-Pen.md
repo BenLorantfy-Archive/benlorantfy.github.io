@@ -9,4 +9,6 @@ How cool is the internet of things? It has the oppurtunity to make our lives eas
 
 Before I can make the pen smart, I have to make a pen. Minion's a small dog so the idea was to make a medium-sized pen I could fit in the flower garden so it didn't have to be moved to cut the grass. I also had the idea to put it up against the basement window so minion could jump through the window whenever he wanted to go outside.
 
+<div class='snap'>
 ![alt text](https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/penStep1.jpg "Logo Title Text 1")
+</div>
