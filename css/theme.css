@@ -43,17 +43,13 @@ a{
 }
 
 #footer{
-  width:100%;
+  width:55%;
   padding:40px;
-  height:300px;
+  margin:auto;
 }
 
 #footerBackground{
   width:100%;
-  position:absolute;
-  bottom:0;
-  left:0;
-  height:300px;
   background-color:#E9E7E8;
 }
 
