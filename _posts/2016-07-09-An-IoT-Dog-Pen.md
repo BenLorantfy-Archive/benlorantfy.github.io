@@ -20,6 +20,10 @@ I cleared out a 8' x 3' space in the weed ridden graden in my backyard. I create
 
 Next I made the door of the pen. The idea was to have it fit where the screen ussually fits so the window could still close when it rains, snows, etc. Or we could also close it if we didn't want minion outside for whatever reason.
 
-<video class='snap' width="200" height="360" autoplay loop><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_jigsaw.mp4" type="video/mp4"/></video><img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_door.jpg'/><video class='snap' width="200" height="360" autoplay loop><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_final_product.mp4" type="video/mp4"/></video>
+<video class='snap' width="200" height="360" autoplay loop><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_jigsaw.mp4" type="video/mp4"/></video>
 
-a third update
+<img class='snap' src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_door.jpg'/><video class='snap' width="200" height="360" autoplay loop>
+
+<source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_final_product.mp4" type="video/mp4"/></video>
+
+a 4th update
