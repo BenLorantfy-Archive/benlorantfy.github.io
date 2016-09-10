@@ -28,5 +28,6 @@ h1{
 
 .snap{
   width:200px;
-  display:inline-block;
+  display:block;
+  float:left;
 }
