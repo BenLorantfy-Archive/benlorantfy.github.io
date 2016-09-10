@@ -36,3 +36,14 @@ h2{
   display:inline-block;
 }
 
+a{
+    color: #3896E8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#footer{
+  width:100%;
+  padding:40px;
+  background-color:#E9E7E8;
+}
