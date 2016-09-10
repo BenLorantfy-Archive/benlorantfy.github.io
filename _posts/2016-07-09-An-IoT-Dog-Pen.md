@@ -1,2 +1,4 @@
---- layout:default.html ---
+--- 
+layout: "default"
+---
 # A title
