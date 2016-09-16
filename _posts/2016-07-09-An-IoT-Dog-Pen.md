@@ -3,7 +3,7 @@ layout: "default"
 ---
 # An IoT Dog Pen
 
-How cool is the internet of things? It has the oppurtunity to make our lives easier by doing everything from a smart fridge telling us when we're out of milk and sending a notification to our phone to cars emailing us when we need an oil change. I recently spent a weekend playing around with the revolutionary idea of machines connected to the internet and I created a smart pen for my dog, "minion".
+How cool is the internet of things? It has the oppurtunity to make our lives easier by doing everything from a smart fridge telling us when we're out of milk and sending a notification to our phone to cars emailing us when we need an oil change. I recently spent a weekend playing around with the revolutionary idea of machines connected to the internet and I created a smart pen for my dog, "minion". 
 
 ## Final Product
 
@@ -12,25 +12,26 @@ How cool is the internet of things? It has the oppurtunity to make our lives eas
 View in a full window [here](http://benlorantfy.com/minion/)
 
 ## Materials
-- 7 2x4s - **$15**
-- 20' long roll of chicken wire - **$15**
-- Sheet of 1/4" plywood - **$10**
-- Knock-off Ardunio - **$10**
-- [Water Level Sensor](http://www.ebay.ca/itm/like/121879477528?lpid=116&chn=ps) - **$4**
-- [Bildge Pump](http://www.canadiantire.ca/en/pdp/v-600-bilge-pump-0793542p.html#srp) - **$27**
-- 3V relay - **$2**
-- Cheap webcam - **$7**
-- Old point and shoot camera
-- Some wire
+- 7 2x4s - **$15** for the pen and ramp structure
+- 20' long roll of chicken wire - **$15** as the fencing to keep my dog in
+- Sheet of 1/4" plywood - **$10** for the doggy door and ramp
+- Knock-off Ardunio - **$10** for switching on/off the water bowl pump and reading sensor data
+- [Water Level Sensor](http://www.ebay.ca/itm/like/121879477528?lpid=116&chn=ps) - **$4** for reading the bowl water level
+- [Bildge Pump](http://www.canadiantire.ca/en/pdp/v-600-bilge-pump-0793542p.html#srp) - **$27** for filling the water bowl
+- 3V relay - **$2** for switching on the pump
+- Cheap webcam - **$7** for streaming under the ramp/mini-doghouse
+- Old point and shoot camera for streaming a view of the entire pen
+- Some wire for connecting everything
 
 ## Libraries
-- [ffmpeg](https://ffmpeg.org/)
-- [jquery](https://jquery.com/)
-- [jsmpeg](https://github.com/phoboslab/jsmpeg)
-- [nodejs](https://nodejs.org/en/)
-- [johnny five](http://johnny-five.io/)
-- [chartjs](http://www.chartjs.org/)
-- [mysql](https://www.mysql.com/)
+- [ffmpeg](https://ffmpeg.org/) for creating the mpeg streams from the devices.
+- [jquery](https://jquery.com/) for DOM manipulation
+- [jsmpeg](https://github.com/phoboslab/jsmpeg) for decoding the streams in the browser and rendering onto a canvas
+- [nodejs](https://nodejs.org/en/) for running the web server
+- [johnny five](http://johnny-five.io/) for communicating with the Ardunio board
+- [chartjs](http://www.chartjs.org/) for creating HTML5 canvas charts
+- [mysql](https://www.mysql.com/) for storing data on the server
+- [CHDK](http://chdk.wikia.com/wiki/CHDK) for hacking in an option to turn off sleep mode on a cannon powershot
 
 ## The actual pen
 
@@ -63,7 +64,7 @@ Next I mounted some web cameras to the pen. There was a couple problems I had to
 
 The second problem was that the point-and-shoot camera ran on batteries and I didn't want to have to change the batteries every time they ran out. I solved this by wiring up a 3V DC power supply to the battery terminals and running the wires through the window to an outlet in my the basement.
 
-The third problem was that whenever the camera screen went to sleep, the feed would go black. Because my camera didn't have an option to turn off the sleep, this was a significant problem. I ended up having to install a hack fireware version to the SD card of the camera and have it autoboot into the custom firmware. The firmware I used is called [CHDK](http://chdk.wikia.com/wiki/CHDK) (Cannon Hack Development Kit). This custom fireware did have an option to turn off the screen sleep which fixed the feed going black problem.
+The third problem was that whenever the camera screen went to sleep, the feed would go black. Because my camera didn't have an option to turn off the sleep, this was a significant problem. I ended up having to install a hack firmware version to the SD card of the camera and have it autoboot into the custom firmware. The firmware I used is called [CHDK](http://chdk.wikia.com/wiki/CHDK) (Cannon Hack Development Kit). This custom firmware did have an option to turn off the screen sleep which fixed the feed going black problem.
 
 <div>
   <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_camera.mp4" type="video/mp4"/></video>
@@ -71,20 +72,20 @@ The third problem was that whenever the camera screen went to sleep, the feed wo
 
 So, next I wanted to setup a web page to stream the camera feeds live. I found that the HTML spec is still pretty new on livestreaming and all the different browsers have way different protocals making it fairly difficult to implement. Of course I could use Flash but I'd rather avoid using a non-standard web technology. I found a solution with [jsmpeg](https://github.com/phoboslab/jsmpeg) which is a really cool mpeg stream decoder in JavaScript. The process flow was as follows:
 
-  1. Create a mpeg stream with something like [ffmpeg](https://ffmpeg.org/) using webcam input and outputing an http stream. The following command worked for me on windows. Make sure your frame rate matches the frame rate of the device you're using, this was an issue for me that I had to figure out.
+  - Create a mpeg stream with something like [ffmpeg](https://ffmpeg.org/) using webcam input and outputing an http stream. The following command worked for me on windows. Make sure your frame rate matches the frame rate of the device you're using.
   
 {% highlight bash %}
     ffmpeg -s 320x240 -r 30 -f dshow -rtbufsize 500000k -i video="Dazzle DVC100 Video" -f mpeg1video -b 400k -r 30 http://127.0.0.1:8082/password123/320/240
 {% endhighlight %}
 
-  2. Create a mpeg websocket stream from the http stream. The jsmpeg repsitory convientantly includes a stream server that does just this for you.
-  3. Recieve the mpeg websocket stream on the browser and use [jsmpeg](https://github.com/phoboslab/jsmpeg) to decode it onto a canvas.
+  - Create a mpeg websocket stream from the http stream. The jsmpeg repo conveniently includes a stream server that does just this for you.
+  - Receive the mpeg websocket stream on the browser and use [jsmpeg](https://github.com/phoboslab/jsmpeg) to decode it onto a canvas.
   
-To host it, I'm using a spare PC desktop with decent specs but you could probably just as easily use a cheap Rasberry Pi.  It's running node.js and a simple mysql database.  I redirected requests to the router IP to the server's private IP from the router settings for port 80 and a couple websocket ports for each camera stream.
+To host it, I'm using a spare PC desktop with decent specs but you could probably just as easily use a cheap Raspberry Pi.  It's running node.js and a simple mysql database.  In the router settings, I redirected requests to the router IP to the server's private IP for port 80 and a couple websocket ports for each camera stream.
 
 ## Water Bowl
 
-I also added the ability to fill minion's water bowl by holding a button on the pen's webpage. I used a Chinese knockoff Ardunio that I got for $10 at a local electronics shop. Since my web server was written in node.js I used the [johnny five](http://johnny-five.io/) javascript robotics library. It's a really cool library that lets you talk to Ardunios from node.js. You have to make sure you load Firmata onto the board first, which is a protocal for communicating with microcontrollers over USB, which you can find in the examples in the Ardunio IDE as "StandardFirmata". I hooked up the Ardunio to a 3V relay that controlled power to a 12V bildge pump. The bildge pump was put in a bucket of water and I connected a hose from the pump to a custom built water trough that I put in minion's pen.
+I also added the ability to fill minion's water bowl by holding down a button on the pen's webpage. I used an Arduino clone that I got for $10 at a local electronics shop. Since my web server was written in node.js I used the [johnny five](http://johnny-five.io/) javascript robotics library. It's a really cool library that lets you talk to Arduinos from node.js. You have to make sure you load Firmata onto the board first. It's a protocal for communicating with microcontrollers over USB, which you can find in the examples in the Ardunio IDE as "StandardFirmata". I hooked up the Arduino to a 3V relay that controlled power to a 12V bilge pump. The bilge pump was put in a bucket of water and I connected a hose from the pump to a custom built water bowl that I put in minion's pen.
 
 <div>
   <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_waterbowl.mp4" type="video/mp4"/></video>
@@ -96,3 +97,6 @@ I also attached a cheap water level sensor I found on ebay to the inside of the 
 <iframe src="http://72.39.166.255/last-minute-chart.html" style='width:350px;height:300px;border:0;margin-right:20px;display:inline-block'></iframe>
 <iframe src="http://72.39.166.255/last-day-chart.html" style='width:350px;height:300px;border:0;display:inline-block'></iframe>
 </div>
+
+## Done
+And that's pretty much where I stopped, there's a few other ideas I have, such as checking the temperature of the water and displaying it along with the water level. This was mostly an opputrunity for me to play around with a bunch of different things including setting up a public server with nodejs, interacting with an Arduino, and streaming video. I think it all came together to result in a pretty cool and somewhat overcomplicated IoT dog pen that I hope my dog likes as much as I enjoyed making it.
