@@ -99,4 +99,4 @@ I also attached a cheap water level sensor I found on ebay to the inside of the 
 </div>
 
 ## Done
-And that's pretty much where I stopped, there's a few other ideas I have, such as checking the temperature of the water and displaying it along with the water level. This was mostly an opputrunity for me to play around with a bunch of different things including setting up a public server with nodejs, interacting with an Arduino, and streaming video. I think it all came together to result in a pretty cool and somewhat overcomplicated IoT dog pen that I hope my dog likes as much as I enjoyed making it.
+And that's pretty much where I stopped. There's a few other ideas I have, such as checking the temperature of the water and displaying it along with the water level, that I might get to someday. This was mostly an opportunity for me to play around with a bunch of different things including setting up a public server with nodejs, interacting with an Arduino in JS, streaming video, and using chartjs. I think it all came together to result in a pretty cool and somewhat overcomplicated IoT dog pen that I hope my dog likes as much as I enjoyed making it.
