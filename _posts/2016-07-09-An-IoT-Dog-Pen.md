@@ -28,6 +28,7 @@ View in a full window [here](http://benlorantfy.com/minion/)
 - [jquery](https://jquery.com/)
 - [jsmpeg](https://github.com/phoboslab/jsmpeg)
 - [nodejs](https://nodejs.org/en/)
+- [johnny five](http://johnny-five.io/)
 - [chartjs](http://www.chartjs.org/)
 - [mysql](https://www.mysql.com/)
 
