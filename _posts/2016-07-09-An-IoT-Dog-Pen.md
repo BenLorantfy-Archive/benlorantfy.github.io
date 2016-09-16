@@ -72,7 +72,9 @@ So, next I wanted to setup a web page to stream the camera feeds live. I found t
 
   1. Create a mpeg stream with something like [ffmpeg](https://ffmpeg.org/) using webcam input and outputing an http stream. The following command worked for me on windows. Make sure your frame rate matches the frame rate of the device you're using, this was an issue for me that I had to figure out.
   
-    `ffmpeg -s 320x240 -r 30 -f dshow -rtbufsize 500000k -i video="Dazzle DVC100 Video" -f mpeg1video -b 400k -r 30 http://127.0.0.1:8082/password123/320/240`
+{% highlight ruby %}
+    ffmpeg -s 320x240 -r 30 -f dshow -rtbufsize 500000k -i video="Dazzle DVC100 Video" -f mpeg1video -b 400k -r 30 http://127.0.0.1:8082/password123/320/240`
+{% endhighlight %}
 
   2. Create a mpeg websocket stream from the http stream. The jsmpeg repsitory convientantly includes a stream server that does just this for you.
   3. Recieve the mpeg websocket stream on the browser and use [jsmpeg](https://github.com/phoboslab/jsmpeg) to decode it onto a canvas.
