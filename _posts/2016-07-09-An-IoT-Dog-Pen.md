@@ -57,6 +57,8 @@ So, next I wanted to setup a web page to stream the camera feeds live. I found t
   2. Create a mpeg websocket stream from the http stream. The jsmpeg repsitory convientantly includes a stream server that does just this for you.
   3. Recieve the mpeg websocket stream on the browser and use [jsmpeg](https://github.com/phoboslab/jsmpeg) to decode it onto a canvas.
   
+To host it, I'm using a spare PC desktop with decent specs but you could probably just as easily use a cheap Rasberry Pi.  It's running node.js and a simple mysql database.  I redirected requests to the router IP to the server's private IP from the router settings for port 80 and a couple websocket ports for each camera stream.
+
 ## Water Bowl
 
 I also added the ability to fill minion's water bowl by holding a button on the pen's webpage. I used a Chinese knockoff Ardunio that I got for $10 at a local electronics shop. Since my web server was written in node.js I used the [johnny five](http://johnny-five.io/) javascript robotics library. It's a really cool library that lets you talk to Ardunios from node.js. You have to make sure you load Firmata onto the board first, which is a protocal for communicating with microcontrollers over USB, which you can find in the examples in the Ardunio IDE as "StandardFirmata". I hooked up the Ardunio to a 3V relay that controlled power to a 12V bildge pump. The bildge pump was put in a bucket of water and I connected a hose from the pump to a custom built water trough that I put in minion's pen.
@@ -64,3 +66,7 @@ I also added the ability to fill minion's water bowl by holding a button on the 
 <div>
   <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_waterbowl.mp4" type="video/mp4"/></video>
 </div>
+
+I also attached a cheap water level sensor I found on ebay to the inside of the waterbowl so I can display the current water level on the web page. This also lets me allow any one to fill the water bowl since I can prevent abuse by stopping it when it reaches a certain water level.  I also added a couple neat real-time graphs to see the water level over time.
+
+<iframe src="http://72.39.166.255/last-minute-chart.html" style='width:400px;height:300px;display:block;border:0;'></iframe>
