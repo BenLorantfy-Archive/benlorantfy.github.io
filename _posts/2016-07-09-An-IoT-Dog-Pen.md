@@ -70,6 +70,6 @@ I also added the ability to fill minion's water bowl by holding a button on the 
 I also attached a cheap water level sensor I found on ebay to the inside of the waterbowl so I can display the current water level on the web page. This also lets me allow any one to fill the water bowl since I can prevent abuse by stopping it when it reaches a certain water level.  I also added a couple neat real-time graphs to see the water level over time.
 
 <div>
-<iframe src="http://72.39.166.255/last-minute-chart.html" style='width:400px;height:300px;border:0;margin-right:20px;display:inline-block'></iframe>
-<iframe src="http://72.39.166.255/last-day-chart.html" style='width:400px;height:300px;border:0;display:inline-block'></iframe>
+<iframe src="http://72.39.166.255/last-minute-chart.html" style='width:350px;height:300px;border:0;margin-right:20px;display:inline-block'></iframe>
+<iframe src="http://72.39.166.255/last-day-chart.html" style='width:350px;height:300px;border:0;display:inline-block'></iframe>
 </div>
