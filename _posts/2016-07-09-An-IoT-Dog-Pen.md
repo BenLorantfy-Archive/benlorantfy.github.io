@@ -12,18 +12,18 @@ How cool is the internet of things? It has the oppurtunity to make our lives eas
 View in a full window [here](http://benlorantfy.com/minion/)
 
 ## Materials
-- 7 2x4s - $15
-- 20' long roll of chicken wire - $15
-- Sheet of 1/4" plywood - $10
-- Knock-off Ardunio - $10
-- [Water Level Sensor](http://www.ebay.ca/itm/like/121879477528?lpid=116&chn=ps) - $4
-- [Bildge Pump](http://www.canadiantire.ca/en/pdp/v-600-bilge-pump-0793542p.html#srp) - $27
-- 3V relay - $2
-- Cheap webcam - $7
+- 7 2x4s - **$15**
+- 20' long roll of chicken wire - **$15**
+- Sheet of 1/4" plywood - **$10**
+- Knock-off Ardunio - **$10**
+- [Water Level Sensor](http://www.ebay.ca/itm/like/121879477528?lpid=116&chn=ps) - **$4**
+- [Bildge Pump](http://www.canadiantire.ca/en/pdp/v-600-bilge-pump-0793542p.html#srp) - **$27**
+- 3V relay - **$2**
+- Cheap webcam - **$7**
 - Old point and shoot camera
 - Some wire
 
-## Technologies and Libraries
+## Libraries
 - [ffmpeg](https://ffmpeg.org/)
 - [jquery](https://jquery.com/)
 - [jsmpeg](https://github.com/phoboslab/jsmpeg)
