@@ -11,6 +11,26 @@ How cool is the internet of things? It has the oppurtunity to make our lives eas
 
 View in a full window [here](http://benlorantfy.com/minion/)
 
+## Materials
+- 7 2x4s - $15
+- 20' long roll of chicken wire - $15
+- Sheet of 1/4" plywood - $10
+- Knock-off Ardunio - $10
+- [Water Level Sensor](http://www.ebay.ca/itm/like/121879477528?lpid=116&chn=ps) - $4
+- [Bildge Pump](http://www.canadiantire.ca/en/pdp/v-600-bilge-pump-0793542p.html#srp) - $27
+- 3V relay - $2
+- Cheap webcam - $7
+- Old point and shoot camera
+- Some wire
+
+## Technologies and Libraries
+- [ffmpeg](https://ffmpeg.org/)
+- [jquery](https://jquery.com/)
+- [jsmpeg](https://github.com/phoboslab/jsmpeg)
+- [nodejs](https://nodejs.org/en/)
+- [chartjs](http://www.chartjs.org/)
+- [mysql](https://www.mysql.com/)
+
 ## The actual pen
 
 Before I can make the pen smart, I have to make a pen. Minion's a small dog so the idea was to make a medium-sized pen I could fit in the flower garden so it didn't have to be moved to cut the grass. I also had the idea to put it up against the basement window so minion could jump through the window whenever he wanted to go outside.
@@ -67,7 +87,7 @@ I also added the ability to fill minion's water bowl by holding a button on the 
   <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/pen_waterbowl.mp4" type="video/mp4"/></video>
 </div>
 
-I also attached a cheap water level sensor I found on ebay to the inside of the waterbowl so I can display the current water level on the web page. This also lets me allow any one to fill the water bowl since I can prevent abuse by stopping it when it reaches a certain water level.  I also added a couple neat real-time graphs to see the water level over time.
+I also attached a cheap water level sensor I found on ebay to the inside of the waterbowl so I can display the current water level on the web page. This also lets me allow any one to fill the water bowl since I can prevent abuse by stopping it when it reaches a certain water level.  I also added a couple neat real-time graphs to see the water level over time. I've also embedded them here:
 
 <div>
 <iframe src="http://72.39.166.255/last-minute-chart.html" style='width:350px;height:300px;border:0;margin-right:20px;display:inline-block'></iframe>
