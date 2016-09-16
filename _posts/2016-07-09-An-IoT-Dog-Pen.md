@@ -7,7 +7,7 @@ How cool is the internet of things? It has the oppurtunity to make our lives eas
 
 ## Final Product
 
-<iframe src="http://benlorantfy.com/minion/" style='width:100%;height:1200px;display:block;'></iframe>
+<iframe src="http://benlorantfy.com/minion/" style='width:100%;height:1100px;display:block;'></iframe>
 
 View in a full window [here](http://benlorantfy.com/minion/)
 
