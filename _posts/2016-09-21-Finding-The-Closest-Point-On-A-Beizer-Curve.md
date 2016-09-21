@@ -7,4 +7,6 @@ I recently came across the need to find the point on a quadratic Beizer Curve cl
 
 <iframe src="http://blog.benlorantfy.com/interactives/beizerCurve.html" style="width:100%;height:420px;display:block;overflow:hidden;"></iframe>
 
+You can also see/steal the class below
+
 <script src="https://gist.github.com/BenLorantfy/9a18e01cf2fcc80b64ca19009e88daec.js"></script>
