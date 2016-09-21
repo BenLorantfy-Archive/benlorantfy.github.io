@@ -32,8 +32,6 @@ title: Ben Lorantfy
 {% for post in site.posts %}
 	<a class="post" href="{{ post.url }}">
 		<div class="postTitle">{{ post.title }} <span class="postDate">{{ post.date | date: "%B %e, %Y" }}</span></div>
-		<div class="postSubtitle">A debatably unnecessary but undeniably cool smart-pen</div>
+		<div class="postSubtitle">{{ post.subtitle }}</div>
 	</a>
 {% endfor %}
-
-
