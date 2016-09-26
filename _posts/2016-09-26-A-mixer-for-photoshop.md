@@ -14,15 +14,15 @@ I ran across a cool product online that let you control photoshop values with kn
 
 **Total:** $37.2 (Slightly cheapr than $200 and you get 5 instead of 2...)
 
-# Wiring
+## Wiring
 It's some pretty easy circuity too. You don't even need a board. The wiring is detailed in the below diagram. The side connectors on the potentiometers need to go to the 5V Out and the ground on the Arduino. It doesn't matter which side goes to which port but it needs to be consistent across each potentiometer. The middle pin needs to connect to an analog input.
 
-<img src="https://www.arduino.cc/en/uploads/Tutorial/AnalogReadSerial_BB.png"></img>
+<img src="https://www.arduino.cc/en/uploads/Tutorial/AnalogReadSerial_BB.png" />
 
-# Mounting
+## Mounting
 The next step is to mount the potentiometer to your case. You can even use a piece of tupperware but if you want something nicer, sparkfun has a metal case here. Drill five 1/4 inch wide holes in the places you want the potentiometers, leaving space for the knob heads to turn.
 
-# Software
+## Software
 I wrote a Photoshop Extension that works with this project called Knobby you can find on GitHub. It was probably the hardest part of the project, because just setting up the default project was a hassle. The nodejs version Photoshop includes is also very outdated which made it hard to communicate with the Arduino. I ended up writing an external program that gets launched when the extension launches. This external program listens for analog input from the Arduino and communicates it to the extension via TCP/IP sockets. Here's about a minute after I got it working:
 
 <div>
