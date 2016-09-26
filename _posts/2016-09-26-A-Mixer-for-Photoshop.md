@@ -8,7 +8,7 @@ I ran across a cool product online that let you [control photoshop values with k
 ## Materials
 - 5x [10k ohm Potentiometers](https://www.sparkfun.com/products/9939) (5 x $0.95 = $4.75)
 - 5x [Silver Metal Knob Heads](https://www.sparkfun.com/products/10001) (5 x $1.50 = $7.50)
-  - You can really use any knob head you want aslong as it fits your potentiometers. For example the ones linked to in the list are 1/4 inch.
+  - You can use any knob head you like aslong as it fits your potentiometers. The ones linked to in the list are 1/4 inch.
 - [Arduino Microcontroller](https://www.sparkfun.com/products/11021) ($24.95)
 - Wire
 - Some kind of container
