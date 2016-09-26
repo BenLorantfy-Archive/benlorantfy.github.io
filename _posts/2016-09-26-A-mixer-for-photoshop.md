@@ -25,5 +25,9 @@ The next step is to mount the potentiometer to your case. You can even use a pie
 # Software
 I wrote a Photoshop Extension that works with this project called Knobby you can find on GitHub. It was probably the hardest part of the project, because just setting up the default project was a hassle. The nodejs version Photoshop includes is also very outdated which made it hard to communicate with the Arduino. I ended up writing an external program that gets launched when the extension launches. This external program listens for analog input from the Arduino and communicates it to the extension via TCP/IP sockets. Here's about a minute after I got it working:
 
+<div>
+  <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/knobby_tests.mp4" type="video/mp4"/> </video> 
+</div>
+
 
 There is a prerequisite for the extension to work. You first need to load the firmata protocal onto the Arduino. This is a protocal for communicating to microcontrollers with a PC. You can find an implementation of it in the Examples tab of the Arduino IDE called `StandardFirmata`.
