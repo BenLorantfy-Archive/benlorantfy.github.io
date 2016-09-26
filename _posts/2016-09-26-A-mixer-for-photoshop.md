@@ -3,7 +3,7 @@ layout: "default"
 ---
 # A Mixer For Photoshop
 
-I ran across a cool product online that let you control photoshop values with knobs and sliders. However, the base model is $200 excluding shipping and only comes with 2 value adjusting controls which is fairly insane. I decided this would be pretty easy and cheap to make with just an arduino. 
+I ran across a cool product online that let you [control photoshop values with knobs and sliders](http://palettegear.com/). However, the base model is $200 excluding shipping and only comes with 2 value adjusting controls which is fairly insane. I decided this would be pretty easy and cheap to make with just an Arduino. 
 
 ## Materials
 - 5x [10k ohm Potentiometers](https://www.sparkfun.com/products/9939) (5 x $0.95 = $4.75)
@@ -23,11 +23,13 @@ It's some pretty easy circuity too. You don't even need a board. The wiring is d
 The next step is to mount the potentiometer to your case. You can even use a piece of tupperware but if you want something nicer, sparkfun has a metal case here. Drill five 1/4 inch wide holes in the places you want the potentiometers, leaving space for the knob heads to turn.
 
 ## Software
-I wrote a Photoshop Extension that works with this project called Knobby you can find on GitHub. It was probably the hardest part of the project, because just setting up the default project was a hassle. The nodejs version Photoshop includes is also very outdated which made it hard to communicate with the Arduino. I ended up writing an external program that gets launched when the extension launches. This external program listens for analog input from the Arduino and communicates it to the extension via TCP/IP sockets. Here's about a minute after I got it working:
+I wrote a Photoshop Extension that works with this project called Knobby you can find on GitHub. It was probably the hardest part of the project, because just setting up the default project was a hassle. The nodejs version Photoshop includes is also very outdated which made it hard to communicate with the Arduino. I ended up writing an external program that gets launched when the extension launches. This external program then listens for analog input from the Arduino and communicates the input to the extension via TCP sockets. Here's about a minute after I got it working:
 
 <div>
   <video class='snap' width="200" height="360" autoplay loop muted><source src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/knobby_tests.mp4" type="video/mp4"/> </video> 
 </div>
 
 
-There is a prerequisite for the extension to work. You first need to load the firmata protocal onto the Arduino. This is a protocal for communicating to microcontrollers with a PC. You can find an implementation of it in the Examples tab of the Arduino IDE called `StandardFirmata`.
+There is a prerequisite for the extension to work. You first need to load the firmata protocal onto the Arduino. This is a protocal for communicating to microcontrollers with a PC. You can find an implementation of it in the examples tab of the Arduino IDE called `StandardFirmata`.
+
+<img src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/firmata.png" />
