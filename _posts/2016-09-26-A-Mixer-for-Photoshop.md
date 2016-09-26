@@ -8,11 +8,12 @@ I ran across a cool product online that let you [control photoshop values with k
 ## Materials
 - 5x [10k ohm Potentiometers](https://www.sparkfun.com/products/9939) (5 x $0.95 = $4.75)
 - 5x [Silver Metal Knob Heads](https://www.sparkfun.com/products/10001) (5 x $1.50 = $7.50)
+  - You can really use any knob head you want aslong as it fits your potentiometers. For example the ones linked to in the list are 1/4 inch. There's some other knob heads that would work here and here.
 - [Arduino Microcontroller](https://www.sparkfun.com/products/11021) ($24.95)
 - Wire
 - Some kind of container
 
-**Total:** $37.2 (Slightly cheapr than $200 and you get 5 instead of 2...)
+**Total:** $37.2 + shipping (Slightly cheaper than $200 and you get 5 instead of 2...)
 
 ## Wiring
 It's some pretty easy circuity too. You don't even need a board. The wiring is detailed in the below diagram. The side connectors on the potentiometers need to go to the 5V Out and the ground on the Arduino. It doesn't matter which side goes to which port but it needs to be consistent across each potentiometer. The middle pin needs to connect to an analog input.
@@ -33,3 +34,6 @@ I wrote a Photoshop Extension that works with this project called Knobby you can
 There is a prerequisite for the extension to work. You first need to load the firmata protocal onto the Arduino. This is a protocal for communicating to microcontrollers with a PC. You can find an implementation of it in the examples tab of the Arduino IDE called `StandardFirmata`.
 
 <img src="https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/firmata.png" />
+
+<!-- Want one but don't want want to build it? I'm on Etsy and I can build one for you :) -->
+Want one but don't want to build it? Send me an [email](mailto:benlorantfy@gmail.com?Subject=Knobby%20Order) and I can build one for you :)
