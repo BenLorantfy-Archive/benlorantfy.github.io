@@ -58,6 +58,6 @@ a{
   background-color:#E9E7E8;
 }
 
-
-
-
+img{
+ max-width:100%; 
+}
