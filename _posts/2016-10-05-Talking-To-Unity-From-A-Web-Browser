@@ -1,3 +1,8 @@
+--- 
+layout: "default"
+---
+# Talking To Unity From A Web Browser
+
 I recently figured out a way to communicate with a web browser from a Unity game over LAN. The solution uses a HTML5 Web Socket on the browser side and a TCP/IP socket from Unity. Before unity and the browser can talk to each other, unity first has to handle a websocket upgrade request. Unity also has to send messages in a specific format in order to be recieved properly by the browser web socket. 
 
 <div>
