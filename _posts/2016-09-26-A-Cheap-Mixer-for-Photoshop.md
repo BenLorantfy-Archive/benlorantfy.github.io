@@ -1,7 +1,7 @@
 --- 
 layout: "default"
 ---
-# A Mixer For Photoshop
+# A Cheap Mixer For Photoshop
 
 I ran across a cool product online that let you [control photoshop values with knobs and sliders](http://palettegear.com/). However, the base model is $200 excluding shipping and only comes with 2 value adjusting controls which is fairly insane. I decided this would be pretty easy and cheap to make with just an Arduino. 
 
