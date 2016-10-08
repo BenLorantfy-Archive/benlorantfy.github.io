@@ -12,8 +12,8 @@ I recently figured out a way to communicate with a web browser from a Unity game
 
 ## Usage
 
-Here's an example of how to use it:
+Here's an example of how to use it. This could go in the `Start()` function of a unity GameObject class.
 <script src="https://gist.github.com/BenLorantfy/8d66668c90285547ae0c73002998a993.js"></script>
 
-You can copy and paste the class from here:
+And here is the class itself:
 <script src="https://gist.github.com/BenLorantfy/abee5736de50dc0da388aafd17a90b1e.js"></script>
