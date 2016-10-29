@@ -6,4 +6,4 @@ However, this presents some additional problems. The bandwidth and processing ti
 
 [purposegames.com](http://www.purposegames.com/) is a really good example of this. They have a huge database of trivia games and every single one has this problem. Here's a perfect score I got on a [game](http://www.purposegames.com/game/countries-of-south-america-quiz) in 1 second:
 
-
+<img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_highscores.png'/>
