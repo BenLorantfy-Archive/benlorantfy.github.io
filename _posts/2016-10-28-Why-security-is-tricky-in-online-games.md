@@ -9,6 +9,7 @@ But ensuring high scores are legitmate, for example, is actually not trivial. Wh
 
 However, this presents some additional problems. The bandwidth and processing time required to recieve each key press and/or mouse move for every user could end up being very expensive. This is also a lot more development. You might have started your system thinking it would just be a simple highscore service but now you realize you have to end up creating a much bigger and complex system. If you realized these issues afterwards, you could end up having to scrap your entire architecture.  Becuase of these issues, most online games are completely insecure and you really can't trust things like the highscore list at all. 
 
+## PurposeGames.com
 [purposegames.com](http://www.purposegames.com/) is a really good example of this. They have a huge database of trivia games and every single one has this problem. Here's a perfect score I got on a [game](http://www.purposegames.com/game/countries-of-south-america-quiz) in 1 second:
 
 <img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_highscores.png'/>
