@@ -61,3 +61,9 @@ a{
 img{
  max-width:100%; 
 }
+
+#disqus_thread{
+  padding:10px;
+  background-color:white;
+  border-radius:10px;
+}
