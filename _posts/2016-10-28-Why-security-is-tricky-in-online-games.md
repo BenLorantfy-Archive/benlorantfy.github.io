@@ -1,3 +1,8 @@
+--- 
+layout: "default"
+---
+# Why security is tricky in online games
+
 Security in online games is trickier to implement than you would think.  Some aspects are pretty straight forward. For example, it's easy enough to make sure accounts are secure. 
 
 But ensuring high scores are legitmate, for example, is actually not trivial. When the game is over and the highscores are submitted, how do you stop someone from opening up the browser console and submitting their own highscore? If you put some thought into this, you realize the only 100% secure way to do this is to submit every user input to the server and run the game itself on the server. Otherwise, you can't trust the user actually played the game and submitted a true highscore.
