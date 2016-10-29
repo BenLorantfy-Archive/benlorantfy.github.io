@@ -23,3 +23,4 @@ Purpose games actually has an additional security flaw. Their game ids are seque
 <img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_console2.png'/>
 
 The way to prevent this would be to use a randomly generated UUID string for game ids. However, this only mitigates the problem. Solving the highscores issue takes a lot more development time and server resources.
+
