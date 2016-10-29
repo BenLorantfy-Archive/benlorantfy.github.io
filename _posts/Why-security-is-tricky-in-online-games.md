@@ -7,3 +7,19 @@ However, this presents some additional problems. The bandwidth and processing ti
 [purposegames.com](http://www.purposegames.com/) is a really good example of this. They have a huge database of trivia games and every single one has this problem. Here's a perfect score I got on a [game](http://www.purposegames.com/game/countries-of-south-america-quiz) in 1 second:
 
 <img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_highscores.png'/>
+
+Here's the basic process of how to do this:
+
+1. Reverse engineer the insert highscores request
+2. Duplciate the request in the browser console or using a command line tool
+3. Edit the highscore value and resubmit
+
+Here's how to do this in purpose games:
+
+<img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_console.png'/>
+
+Purpose games actually has an additional security flaw. Their game ids are sequential. That means I can loop through each one of them and submit my own highscore:
+
+<img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_console2.png'/>
+
+The way to prevent this would be to use a randomly generated UUID string for game ids. However, this only mitigates the problem. Solving the highscores issue takes a lot more development time and server resources.
