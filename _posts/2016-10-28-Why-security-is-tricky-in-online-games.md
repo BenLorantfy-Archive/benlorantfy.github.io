@@ -25,7 +25,7 @@ Here's how to do this in purpose games:
 
 <img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_console.png'/>
 
-Purpose games actually has an additional security flaw. Their game ids are sequential. That means I can loop through each one of them and submit my own highscore:
+Purpose games actually has an additional security flaw. Their game ids are sequential. That means I could loop through each one of them and submit my own highscore:
 
 <img src='https://raw.githubusercontent.com/BenLorantfy/BenLorantfy.github.io/master/img/hacked_console2.png'/>
 
