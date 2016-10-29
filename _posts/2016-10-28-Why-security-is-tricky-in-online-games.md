@@ -1,5 +1,6 @@
 --- 
 layout: "default"
+comments: true
 ---
 # Why security is tricky in online games
 
