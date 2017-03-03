@@ -4,5 +4,5 @@ The Collatz Conjecture is a conjecture that has yet to be proven. The conjecture
 
 The interview got me thinking about any patterns that emerge in the conjecture. One area where a pattern might exist is with the number of steps it takes to reach 1. I ended up making an interactive that you can use to search for a pattern below.
 
-<p data-height="265" data-theme-id="0" data-slug-hash="KWzXoX" data-default-tab="js,result" data-user="benlorantfy" data-embed-version="2" data-pen-title="Collatz Illustrated" class="codepen">See the Pen <a href="http://codepen.io/benlorantfy/pen/KWzXoX/">Collatz Illustrated</a> by Ben Lorantfy (<a href="http://codepen.io/benlorantfy">@benlorantfy</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="567" data-theme-id="0" data-slug-hash="KWzXoX" data-default-tab="js,result" data-user="benlorantfy" data-embed-version="2" data-pen-title="Collatz Illustrated" class="codepen">See the Pen <a href="http://codepen.io/benlorantfy/pen/KWzXoX/">Collatz Illustrated</a> by Ben Lorantfy (<a href="http://codepen.io/benlorantfy">@benlorantfy</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
