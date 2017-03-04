@@ -7,7 +7,7 @@ A conjective in the context of mathematics, if you're not aware, is basically a 
 
 The Collatz Conjecture is a conjecture that has yet to be proven. The conjecture states that if you take any number and divide by 2 if it's even or multiply by 3 and add 1 if it's odd, that you'll eventually get to 1 if you repeat this process for long enough. 
 
-<img src="https://imgs.xkcd.com/comics/collatz_conjecture.png"/>
+<img style="display:block; margin:auto" src="https://imgs.xkcd.com/comics/collatz_conjecture.png"/>
 
 I recently had to implement a fast algorithim to do this as part of an interview process. The interview got me thinking about any patterns that emerge in the conjecture. One area where a pattern might exist is with the number of steps it takes to reach 1. I ended up making an interactive that you can use to search for a pattern below.
 
