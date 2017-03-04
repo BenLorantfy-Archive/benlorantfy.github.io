@@ -13,3 +13,7 @@ I recently had to implement a fast algorithim to do this as part of an interview
 
 <p data-height="567" data-theme-id="0" data-slug-hash="KWzXoX" data-default-tab="result" data-user="benlorantfy" data-embed-version="2" data-pen-title="Collatz Illustrated" class="codepen">See the Pen <a href="http://codepen.io/benlorantfy/pen/KWzXoX/">Collatz Illustrated</a> by Ben Lorantfy (<a href="http://codepen.io/benlorantfy">@benlorantfy</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+The black bars are the steps it takes to reach each number. The red line is the line of best fit calculated using the least squares method. The yellow line is a rolling average. You can change the period of the rolling average using the textbox. With these analytics, there are a few patterns that emerge when you look at a big enough dataset. First you will notice that the red line has a slight positive slope, suggesting bigger numbers generally take more steps to reach 1. The yellow line also seems to suggest that the randomness of the data increases as the numbers increase.
+
+You can adjust the properties to see if you can find any other patterns wit 
