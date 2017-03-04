@@ -5,7 +5,8 @@ layout: "default"
 
 I recently came across the need to find the point on a quadratic Beizer Curve closest to some other point. I couldn't find a solution online that matched my specific requirements so I wrote a small class in JavaScript to do it. You can see it demonstrated in the below interactive.
 
-<iframe src="http://blog.benlorantfy.com/interactives/beizerCurve.html" style="width:100%;height:420px;display:block;overflow:hidden;"></iframe>
+<p data-height="459" data-theme-id="0" data-slug-hash="oZLooX" data-default-tab="result" data-user="benlorantfy" data-embed-version="2" data-pen-title="Closest Point" class="codepen">See the Pen <a href="http://codepen.io/benlorantfy/pen/oZLooX/">Closest Point</a> by Ben Lorantfy (<a href="http://codepen.io/benlorantfy">@benlorantfy</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 You can also see/steal the class below
 
