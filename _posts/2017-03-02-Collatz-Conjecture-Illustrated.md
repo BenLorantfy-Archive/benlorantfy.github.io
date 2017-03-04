@@ -16,4 +16,4 @@ I recently had to implement a fast algorithim to do this as part of an interview
 
 The black bars are the steps it takes to reach each number. The red line is the line of best fit calculated using the least squares method. The yellow line is a rolling average. You can change the period of the rolling average using the textbox. With these analytics, there are a few patterns that emerge when you look at a big enough dataset. First you will notice that the red line has a slight positive slope, suggesting bigger numbers generally take more steps to reach 1. The yellow line also seems to suggest that the randomness of the data increases as the numbers increase.
 
-You can adjust the properties to see if you can find any other patterns wit 
+You can adjust the properties above to see if you can find any other patterns
