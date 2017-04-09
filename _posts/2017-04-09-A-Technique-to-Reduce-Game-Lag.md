@@ -32,7 +32,7 @@ A first attempt might be to just set the coordinates every time we recieve the m
         }
     })
     
-<video src="/img/lag1.mov" />
+<video src="/img/lag1.mov" autoplay />
     
 However, this means the blue box will be behind by the length of our send interval. So if we send the messages every 100ms, the box will be behind by 100ms. One way to fix this is to send the messages more often. However, this might be too expensive a solution.
 
