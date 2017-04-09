@@ -68,3 +68,6 @@ img{
   background-color:white;
   border-radius:10px;
 }
+
+video{
+  max-width:100%;
