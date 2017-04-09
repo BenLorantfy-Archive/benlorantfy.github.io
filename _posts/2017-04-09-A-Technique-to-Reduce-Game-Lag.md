@@ -23,4 +23,4 @@ This is where the technique comes in. The idea is to interpolate the coordinates
 
 <video src="/img/lag2.mov" autoplay loop></video>
 
-Combine this with a modest decrease to our interval size and it's a pretty good solution while still sending a limited amount of messages.
+If you compare the two videos you will notice a significant improvement in the second one, yet we're still sending the same amount of messages at the same message sending rate.
