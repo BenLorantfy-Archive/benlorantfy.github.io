@@ -1,0 +1,550 @@
+<html>
+<head> 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <style>
+        html,body{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+
+            font-weight: 100;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        *{
+            box-sizing: border-box;
+        }
+
+        #holder{
+            background-color:grey;
+        }
+
+        .gridBlock{
+            background-color:white;
+            border:1px solid lightgrey;
+            display: inline-block;
+        }
+
+        .selected{
+            background-color:greenyellow;
+        }
+
+        .blocked{
+            background-color:red !important;
+        }
+
+        #holder.hideGrid .gridBlock{
+            border:none;
+        }
+
+        .dimension{
+            padding:4px;
+            width:40px;
+            text-align: center;
+        }
+
+        #siteContainer,#holder,#highscores{
+            margin-left:auto;
+            margin-right:auto;
+            text-align: center;
+        }
+
+        #holder{
+            margin-bottom:10px;
+        }
+
+        #yourScore{
+            margin-top:10px;
+            font-size:24px;
+            margin-bottom:10px;
+        }
+
+        #rules{
+            text-align: left;
+            margin-left:auto;
+            margin-right: auto;
+            width:400px;
+        }
+
+        #highscores td,th{
+            padding:10px;
+            background-color:lightgrey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="siteContainer">
+        <h1>Mondrian Art Puzzle</h1>
+        <div id="holder"></div>
+        <input id="width" class="dimension" placeholder="width" value="6" /> x
+        <input id="height" class="dimension" placeholder="height" value="6" />
+        <div id="yourScore">Your Score: <span id="score">Incomplete</span></div>
+
+        <div id="controls">
+            <button id="submit">Submit</button> <button id="reset">Reset</button> <button id="gridToggle">Toggle Grid</button>
+        </div>
+
+        <h2>Rules</h2>
+        <div id="rules">
+            <ul>   
+                <li>Click and drag to draw rectanges</li>
+                <li>You must fill the entire grid with rectangles</li>
+                <li>You can't use two rectangles with the same or opposite dimensions</li>
+                <li>You must use more than one rectangle</li>
+                <li>Rectangles can not overlap</li>
+                <li>Your score will be your biggest rectangle minus your smallest rectangle</li>
+                <li>Lower scores are good and higher scores are bad</li>
+            </ul>
+        </div>
+
+
+        <h2>High Scores</h2>
+        <table id="highscores">
+            <tbody>
+                <tr>
+                    <th>Grid Size</th>
+                    <th>Score</th>
+                    <th>Record Holder</th>
+                    <th>Record Date</th>
+                </tr>
+            </tbody>
+            <tbody id="highscoresData">
+
+            </tbody>
+        </table>
+
+    </div> 
+
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAjrY5X0svyujcv1V11vZZoQ-40h43UzXY",
+            authDomain: "mondrian-9afdb.firebaseapp.com",
+            databaseURL: "https://mondrian-9afdb.firebaseio.com",
+            projectId: "mondrian-9afdb",
+            storageBucket: "mondrian-9afdb.appspot.com",
+            messagingSenderId: "921671287404"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script>
+        // [ Highscore List ]
+        firebase.database().ref("grids").on("value",function(snapshot){
+            $("#highscoresData").empty();
+
+            var grids = snapshot.val();
+            for(var key in grids){
+                var data = grids[key];
+                var row = $("<tr></tr>");
+                var date = moment(data.timestamp).format("MMM Do YYYY");
+                row.append($("<td></td>").text(key));
+                row.append($("<td></td>").text(data.score));
+                row.append($("<td></td>").text(data.author));
+                row.append($("<td></td>").text(date));
+
+                $("#highscoresData").append(row);
+            }
+
+        })
+    </script>
+
+    <script>
+        var blockSize = 50;
+        var width = 0;
+        var height = 0;
+        var area = 0;
+        var debug = true;
+        var mouseX = 0;
+        var mouseY = 0;
+        var localX = 0;
+        var localY = 0;
+        var blockX = 0;
+        var blockY = 0;
+        var firstBlockX = 0;
+        var firstBlockY = 0;
+        var rectangles = [];
+        var score = 0;
+        var author = null;
+        var submitUrl = "https://us-central1-mondrian-9afdb.cloudfunctions.net/submit";
+
+        $("#width").on("change",function(){
+            updateGrid();
+        });
+
+        $("#height").on("change",function(){
+            updateGrid();
+        });
+
+        var dragging = false;
+        $("#holder").on("mousedown",".gridBlock",function(e){
+            e.preventDefault();
+
+            // if(debug) console.log("start drag");
+            dragging = true;
+            firstBlockX = blockX;
+            firstBlockY = blockY;
+            colorGrid();
+        })
+
+        $(document).on("mousemove",function(e){
+            var offset = $("#holder").offset();
+
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+            localX = mouseX - offset.left;
+            localY = mouseY - offset.top;
+            blockX = Math.floor(localX / blockSize);
+            blockY = Math.floor(localY / blockSize);
+
+            if(dragging){
+                if(debug) console.log("dragging");
+                colorGrid();
+            }
+        });
+
+        $(document).on("mouseup",function(){
+            if(!dragging) return;     
+            dragging = false;
+
+            if($(".selected").length > 0 && $(".blocked").length == 0){
+                    var x = Math.min(blockX,firstBlockX)
+                    var y = Math.min(blockY,firstBlockY)
+                    var maxX = Math.max(blockX,firstBlockX)
+                    var maxY = Math.max(blockY,firstBlockY)
+
+                // Make sure x/y/etc. are within bounds of rectangle
+                if(x < 0) x = 0;
+                if(y < 0) y = 0;
+                if(x >= width) x = width - 1;
+                if(y >= height) y = height - 1;
+                if(maxX < 0) maxX = 0;
+                if(maxY < 0) maxY = 0;
+                if(maxX >= width) maxX = width - 1;
+                if(maxY >= height) maxY = height - 1;
+
+                rectangles.push({
+                    x:x
+                    ,y:y
+                    ,maxX:maxX
+                    ,maxY:maxY
+                });
+
+                var c = generateColor();
+                $(".selected").addClass("done");
+                $(".selected").css("background-color","rgb(" + c[0] + "," + c[1] + "," + c[2] + ")");
+            }
+
+            $(".selected").removeClass("selected");
+            $(".blocked").removeClass("blocked");
+
+            checkIfFull();
+        });
+
+        $("#submit").click(function(){
+            author = prompt("What name would you like beside your highscore?");
+            if(!author){
+                author = "Anonymous";
+            }
+            submitScore();
+        });
+
+        $("#reset").click(function(){
+            updateGrid();
+        })
+
+        $("#gridToggle").click(function(){
+            $("#holder").toggleClass("hideGrid");
+        })
+
+        function updateGrid(){
+            $("#holder").removeClass("hideGrid");
+
+            width = $("#width").val();
+            height = $("#height").val();
+            $("#holder").height(height * blockSize);
+            $("#holder").width(width * blockSize);
+
+            area = width*height;
+
+            $("#score").text("Incomplete");
+            $("#holder").empty();
+            rectangles = [];
+
+            var gridBlock = $("<div class = 'gridBlock'></div>").width(blockSize).height(blockSize);
+            
+            for(var i = 0; i < area; i++){
+                var y = Math.floor(i / width);
+                var x = i - y*width;
+                var clone = gridBlock.clone().addClass("block-" + x + "-" + y);
+                $("#holder").append(clone);
+            }
+        }
+
+        function colorGrid(){
+            $(".gridBlock").removeClass("selected");
+            $(".gridBlock").removeClass("blocked");
+
+            // Check all existing rectangles to see if any are the same dimensions
+            var blockAll = false;
+            var dragWidth = Math.max(firstBlockX,blockX) - Math.min(firstBlockX,blockX) + 1;
+            var dragHeight = Math.max(firstBlockY,blockY) - Math.min(firstBlockY,blockY) + 1;
+
+            if(dragWidth == width && dragHeight == height){
+                blockAll = true;
+            }
+
+            if(!blockAll){
+                for(var i = 0; i < rectangles.length; i++){
+                    var a = rectangles[i];
+                    var b = {
+                         x:Math.min(firstBlockX,blockX)
+                        ,y:Math.min(firstBlockY,blockY)
+                        ,maxX:Math.max(firstBlockX,blockX)
+                        ,maxY:Math.max(firstBlockY,blockY)
+                    }
+
+                    var widthA = a.maxX - a.x;
+                    var heightA = a.maxY - a.y;
+                    var widthB = b.maxX - b.x;
+                    var heightB = b.maxY - b.y;
+                    if(widthA == widthB && heightA == heightB) blockAll = true;
+                    if(widthA == heightB && heightA == widthB) blockAll = true;
+                }
+            }
+
+            for(var x = Math.min(firstBlockX,blockX); x <= Math.max(firstBlockX,blockX); x++){
+                for(var y = Math.min(firstBlockY,blockY); y <= Math.max(firstBlockY,blockY); y++){
+                    var block = $(".block-" + x + "-" + y);
+                    if(!block.hasClass("done") && !blockAll){
+                        block.addClass("selected");
+                    }else{
+                        block.addClass("blocked");
+                    }
+                }              
+            }
+        }
+
+        function checkIfFull(){
+            var request = {};
+            var valid = validateRectangles(rectangles,width,height);
+            if(valid){
+                console.log("valid");
+            }else{
+                console.log("invalid");
+                return;
+            }
+                
+            score = calculateScore(rectangles);
+            $("#score").text(score);
+            $("#holder").addClass("hideGrid");
+        }
+
+        function submitScore(){
+            var request = {};
+            request.rectangles = rectangles;
+            request.width = width * 1;
+            request.height = height * 1;
+            request.author = author;
+
+            $.ajax({
+                type: "POST",
+                url: submitUrl,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data:JSON.stringify(request)
+            }).done(function(data){
+                console.log(data);
+            }).fail(function(data){
+                console.log(data);
+            });
+        }
+
+        function validateRectangles(rectangles,width,height){
+
+            //
+            // Criteria for rectangles to be valid
+            // -----------------------------------
+            // 1. Proper format
+            // 2. Have to be within width/height
+            // 3. Can't overlap
+            // 4. Can't be any rectangles with same dimensions
+            // 5. Can't be any leftover space
+            // 6. Can't have one or zero rectangles
+            if(rectangles.length <= 1) return false;
+
+            // O(n)
+            for(var i = 0; i < rectangles.length; i++){
+                var rectangle = rectangles[i];
+
+                // [ Check proper format ]
+                if(typeof rectangle.x !== "number") return false;
+                if(typeof rectangle.y !== "number") return false;
+                if(typeof rectangle.maxX !== "number") return false;
+                if(typeof rectangle.maxY !== "number") return false;
+
+                if(rectangle.x < 0) return false;
+                if(rectangle.y < 0) return false;
+                if(rectangle.maxX < 0) return false;
+                if(rectangle.maxY < 0) return false;
+
+                if(!isFinite(rectangle.x)) return false;
+                if(!isFinite(rectangle.y)) return false;
+                if(!isFinite(rectangle.maxX)) return false;
+                if(!isFinite(rectangle.maxY)) return false;       
+
+                if(rectangle.x > rectangle.maxX) return false;
+                if(rectangle.y > rectangle.maxY) return false;    
+
+                // [ Check within width/height ]
+                if(rectangle.x >= width) return false;
+                if(rectangle.maxX >= width) return false;
+                if(rectangle.y >= height) return false;
+                if(rectangle.maxY >= height) return false;   
+            }
+
+            // O(n^2)
+            for(var i = 0; i < rectangles.length; i++){
+                var rectangle = rectangles[i];
+        
+                for(var j = 0; j < rectangles.length; j++){
+                    if(i == j) continue;
+                    var a = rectangle;
+                    var b = rectangles[j];
+
+                    // [ Check Overlap ]
+                    var intersects = 
+                        a.x <= b.maxX &&
+                        b.x <= a.maxX &&
+                        a.y <= b.maxY &&
+                        b.y <= a.maxY;
+
+                    if(intersects) return false;
+
+                    // [ Check if dimensions are same ]
+                    var widthA = a.maxX - a.x;
+                    var heightA = a.maxY - a.y;
+                    var widthB = b.maxX - b.x;
+                    var heightB = b.maxY - b.y;
+                    if(widthA == widthB && heightA == heightB) return false;
+                    if(widthA == heightB && heightA == widthB) return false;
+                }
+            }
+
+            // [ Check for left over space ]
+            var blocks = {};
+            for(var i = 0; i < rectangles.length; i++){
+                var rectangle = rectangles[i];
+
+                for(var x = rectangle.x; x <= rectangle.maxX; x++){
+                    for(var y = rectangle.y; y <= rectangle.maxY; y++){
+                        blocks[x + "-" + y] = true;
+                    }
+                }
+            }   
+
+            // Count number of blocks
+            var blockCount = 0;
+            for(var key in blocks){
+                blockCount++;
+            }
+
+            if(blockCount != (width * height)) return false;
+
+            return true;
+        }
+
+        function calculateScore(rectangles){
+            var min = Number.MAX_VALUE;
+            var max = Number.MAX_VALUE * -1;
+
+            for(var i = 0; i < rectangles.length; i++){
+                var rectangle = rectangles[i];
+                var area = (rectangle.maxX - rectangle.x + 1) * (rectangle.maxY - rectangle.y + 1);
+                min = Math.min(min,area);
+                max = Math.max(max,area);
+            }
+
+            return max - min;
+        }
+
+        var generateColor = (function(){
+            var i = 4;
+            var hueStep = 40;
+            var satStep = 30;
+            var lightStep = 15;
+
+            /**
+            * Converts an HSL color value to RGB. Conversion formula
+            * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+            * Assumes h, s, and l are contained in the set [0, 1] and
+            * returns r, g, and b in the set [0, 255].
+            *
+            * @param   {number}  h       The hue
+            * @param   {number}  s       The saturation
+            * @param   {number}  l       The lightness
+            * @return  {Array}           The RGB representation
+            */
+            function hslToRgb(h, s, l){
+                var r, g, b;
+
+                if(s == 0){
+                    r = g = b = l; // achromatic
+                }else{
+                    var hue2rgb = function hue2rgb(p, q, t){
+                        if(t < 0) t += 1;
+                        if(t > 1) t -= 1;
+                        if(t < 1/6) return p + (q - p) * 6 * t;
+                        if(t < 1/2) return q;
+                        if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                        return p;
+                    }
+
+                    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                    var p = 2 * l - q;
+                    r = hue2rgb(p, q, h + 1/3);
+                    g = hue2rgb(p, q, h);
+                    b = hue2rgb(p, q, h - 1/3);
+                }
+
+                return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+            }
+
+            return function(){
+                
+                
+
+                var hue = hueStep * i;
+                var numHueCycles = Math.floor(hue / 360);
+
+                var light = lightStep*numHueCycles;
+                var numLightCycles = Math.floor(light / 50);
+
+                var sat = satStep*numLightCycles;
+
+                hue = hue - numHueCycles * 360;
+                light = light - numLightCycles * 60;
+                light = 40 + light;
+                
+                sat = sat - Math.floor(sat / 50) * 50;        
+                sat = 50 + sat;
+
+                                console.log(i,hue,sat,light);
+
+                var rgb = hslToRgb(hue / 360, sat / 100, light / 100);
+
+                i++;
+                return rgb;
+            }
+        })();
+
+        // Do initial grid setup
+        updateGrid();
+    </script>
+</body>
+
+</html>
