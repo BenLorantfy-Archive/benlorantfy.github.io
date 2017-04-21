@@ -16,6 +16,7 @@ exports.submit = functions.https.onRequest((req, res) => {
 
     if (req.method !== 'POST') {
       res.status(500).send('function only accepts post requests');
+      return;
     }
 
     var body = req.body;
