@@ -1,7 +1,7 @@
 --- 
 layout: "default"
 ---
-# Modrian Art Puzzle
+# Modrian Art Puzzles
 
 I recently learned about something called a Mondrian Puzzle. These are square puzzles where you need to draw in rectangles to fill the square. The catch is that you can't reuse rectangles with the same or opposite dimensions. Your score is the area of the biggest rectangles minus the area of the smallest rectangle and you're trying to get smaller scores.
 
