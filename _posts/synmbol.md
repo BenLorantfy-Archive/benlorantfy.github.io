@@ -18,8 +18,14 @@
 - Motorola EMDK
   - Zebra Technologies aquired Motorola Solutions Enterprise Business in October 2014, but they still maintain a download link for the .NET EMDK which can be found here: https://www.zebra.com/us/en/support-downloads/software/developer-tools/emdk-for-net.html
   
+## Steps
+- Windows Mobile Device Center needs to be running and it needs to say "Connected" with a green checkmark
+
 ## Possible Errors
 ### While Installing the EMDK
 - Visual Studio 2008 Not Found. **Fix:** Install Visual Studio 2008 Pro
 - Failed to install for Visual Studio 2008. **Fix:** Make sure the PRO version is installed, not express or standard
 - You can contribute to this list by opening a PR in github
+
+## While trying to deploy
+- Connect to device failed: **fix**: Windows Mobile Device Center needs to be running and it needs to say "Connected" with a green checkmark. Try plugging in and unplugging device untill it says Connected.
